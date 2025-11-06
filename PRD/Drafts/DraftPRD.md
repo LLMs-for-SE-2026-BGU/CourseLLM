@@ -2,6 +2,8 @@
 
 <!-- Copilot: This is the initial draft. Review and refine sections before promoting to PRD.md -->
 
+<!--test test-->
+
 ## 1. Overview & Vision
 
 **Product Name:** CourseLLM (working title)
