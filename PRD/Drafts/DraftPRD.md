@@ -1,7 +1,7 @@
 # CourseLLM – Product Requirements Document (Draft)
 
 <!-- Copilot: This is the initial draft. Review and refine sections before promoting to PRD.md -->
-
+<!-- Ron -->
 ## 1. Overview & Vision
 
 **Product Name:** CourseLLM (working title)
