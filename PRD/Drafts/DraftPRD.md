@@ -2,8 +2,6 @@
 
 <!-- Copilot: This is the initial draft. Review and refine sections before promoting to PRD.md -->
 
-<!--test test-->
-<!-- Ron -->
 ## 1. Overview & Vision
 
 **Product Name:** CourseLLM (working title)
@@ -11,6 +9,7 @@
 **Vision:**  
 Help teachers and students in a Computer Science Department at university better teach and learn using AI that enhances existing course material.
 
+<!-- Copilot: please expend some on what is context-aware, context aware with respect to what? -->
 **Core Principle:**  
 CourseLLM does not create new material or replace existing AI tools (NotebookLM, chatbots). Instead, it enhances the learning experience around existing course material by providing intelligent, context-aware assistance.
 
@@ -31,6 +30,7 @@ CourseLLM does not create new material or replace existing AI tools (NotebookLM,
 
 ---
 
+<!-- Copilot: expend a little about socratic learning-->
 ## 3. Objectives & Success Metrics
 
 ### Primary Objectives:
@@ -40,7 +40,7 @@ CourseLLM does not create new material or replace existing AI tools (NotebookLM,
 
 ### Success Metrics:
 <!-- Copilot: suggest KPIs for each objective -->
-
+<!-- Copilot: please replace this comment with a comment with what you think could be added here to enhance this section (suggest different tregectories of changes)-->
 | Metric | Target | Measurement Method |
 |--------|--------|-------------------|
 | Student engagement with course chatbot | 70% weekly active users | Usage analytics |
@@ -60,6 +60,7 @@ CourseLLM does not create new material or replace existing AI tools (NotebookLM,
 - **Goals:** Understand course material deeply, prepare for exams, complete assignments efficiently.
 - **Pain Points:** Material is dense, unclear where to start, wants personalized help without feeling "lost."
 - **Needs:** Chatbot that guides learning, generates practice exercises, explains "why" topics matter.
+
 
 #### **Persona 2: Course Instructor**
 - **Name:** Dr. Sarah (CS Faculty, teaches Data Structures & Algorithms)
@@ -81,6 +82,7 @@ CourseLLM does not create new material or replace existing AI tools (NotebookLM,
   - Use **socratic learning**: ask clarifying questions before answering.
 - **User Stories:** See [UserStories.md](UserStories.md#F1)
 
+<!-- Copilot: dis ambiguate skill trees, who create them and how do they constrain the student ?-->
 #### **F2: Personalized Learning Trajectories**
 - **Description:** System tracks student progress through ordered topics (learning trajectories).
 - **Key Behaviors:**

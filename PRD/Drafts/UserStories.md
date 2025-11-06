@@ -56,6 +56,8 @@ Each user story follows this structure:
   - Progress percentages per topic
   - Estimated time to complete remaining topics
 
+<!--copilot: please also include suggested topics more advance then the one tought in the confind of the selabus of the class, but only as suggestions (always state by the chatbot that we need)-->
+
 #### US-S2.2: Recommended Next Steps
 - **As a** student who just completed a topic
 - **I want to** receive recommendations for what to study next
@@ -79,6 +81,7 @@ Each user story follows this structure:
   - Instant feedback with explanations
   - Performance saved to learning trajectory
 
+<!--copilot: if needed, please add something about progressive learning, like how the question should become tougher and tougher in each itteration-->
 #### US-S3.2: Adaptive Difficulty
 - **As a** student practicing a topic
 - **I want to** receive harder or easier questions based on my performance
@@ -135,7 +138,7 @@ Each user story follows this structure:
 ---
 
 ### F6: Additional Resources
-
+<!--copilot: can you disambiguate "Links verified annually"-->
 #### US-S6.1: Discover Supplementary Materials
 - **As a** student wanting to go deeper
 - **I want to** find curated papers, videos, tutorials on current topic
@@ -169,6 +172,7 @@ Each user story follows this structure:
   - Identifies missing prerequisite explanations
   - Suggests reordering topics for logical flow
 
+<!--copilot: explain about the indexing process further"-->
 #### US-T1.3: Index for RAG
 - **As a** instructor
 - **I want to** confirm my materials are indexed and searchable
@@ -213,6 +217,7 @@ Each user story follows this structure:
   - System generates 3-5 questions/tasks
   - Teacher edits before publishing
 
+<!--copilot: remove T3.2 (and reindex)"-->
 #### US-T3.2: Test LLM Resilience
 - **As a** instructor
 - **I want to** check if an assignment is solvable by ChatGPT/Copilot
@@ -257,6 +262,7 @@ Each user story follows this structure:
 
 ### T5: Grading Assistance
 
+<!--copilot: remove T5.1 (and reindex)"-->
 #### US-T5.1: AI-Assisted Essay Grading
 - **As a** instructor grading 50 essay submissions
 - **I want to** receive draft grades and feedback from AI
@@ -266,6 +272,7 @@ Each user story follows this structure:
   - Provides sentence-level comments
   - Teacher reviews and adjusts before publishing
 
+<!--copilot: i think here we need to maybe suggest the LLM make unit tests for the assignment and the teacher approve it (in addition to everyting else as check plagiarism and so on)-->
 #### US-T5.2: Batch Code Review
 - **As a** instructor grading coding assignments
 - **I want to** see automated checks (correctness, style, efficiency)
