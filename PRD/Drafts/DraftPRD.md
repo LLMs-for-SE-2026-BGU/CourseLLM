@@ -198,13 +198,13 @@ The following metrics align with each objective. Additional KPIs to consider inc
 
 ### Risks:
 
-| Risk | Impact | Mitigation |
-|------|--------|-----------|
-| Students rely on chatbot instead of learning | High | Socratic mode, progress tracking |
-| Teachers distrust AI grading | Medium | Require manual review, transparency |
-| Privacy breach of student data | High | Encryption, access controls, compliance audit |
-| LLM generates incorrect answers | Medium | RAG grounding, confidence scores, feedback loop |
-| Adoption resistance from faculty | Medium | Pilot with early adopters, training sessions |
+| Risk | Impact | Mitigation | Monitoring Signal |
+|------|--------|------------|-------------------|
+| Students rely on chatbot instead of learning | High | Socratic mode, progress tracking | High rate of direct answer requests; Low engagement with practice quizzes. |
+| Teachers distrust AI grading | Medium | Require manual review, transparency | High rate of AI-grade overrides (>40%); Low adoption of grading feature. |
+| Privacy breach of student data | High | Encryption, access controls, compliance audit | Security audit reports; Number of access privilege escalations. |
+| LLM generates incorrect answers | Medium | RAG grounding, confidence scores, feedback loop | High rate of user downvotes on chatbot answers; Reports of hallucinations. |
+| Adoption resistance from faculty | Medium | Pilot with early adopters, training sessions | Low login rates for instructors; Low content upload rates post-onboarding. |
 
 ---
 
