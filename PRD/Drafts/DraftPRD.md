@@ -282,3 +282,6 @@ System must log:
 *Document Status: Brainstorming / Initial Draft*  
 *Date: November 2025*  
 *Next Review: Convert to formal PRD structure*
+
+LLM Chat:
+https://claude.ai/share/f9066c75-ab76-4ae0-b5a2-eebd3f7522b7
