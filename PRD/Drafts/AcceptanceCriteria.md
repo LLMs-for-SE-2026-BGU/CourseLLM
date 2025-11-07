@@ -269,6 +269,4 @@
 
 ---
 
-**Document Owner:** QA Lead  
-**Approved By:** Project Manager, Technical Lead  
 **Last Updated:** November 5, 2025
