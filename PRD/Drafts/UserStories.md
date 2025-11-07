@@ -252,27 +252,36 @@ Each user story follows this structure:
 
 ### T5: Grading Assistance
 
-#### US-T5.1: Batch Code Review with Unit Testing
+#### US-T5.1: Automated Code Validation
 - **As a** instructor grading coding assignments
-- **I want to** use AI-generated unit tests to automatically validate student code, check style and efficiency, and detect plagiarism patterns
-- **So that** I can quickly identify which submissions are correct and which need deeper review
+- **I want to** automatically run a suite of unit tests against all student submissions
+- **So that** I can quickly verify code correctness, style, and efficiency at scale.
 - **Acceptance Criteria:**
-  - System suggests unit tests for the assignment based on requirements (teacher reviews and approves test suite before deployment)
-  - Runs approved unit tests against all student submissions
-  - Flags submissions with unusual patterns (possible plagiarism or AI-generated code)
-  - Provides correctness scores, style reports, and efficiency metrics
-  - Teacher manually reviews flagged submissions and edge cases
+  - System suggests unit tests for the assignment based on requirements (teacher reviews and approves).
+  - Runs the approved test suite against all submissions in a sandboxed environment.
+  - Provides a dashboard showing correctness scores (pass/fail), code style reports, and efficiency metrics for each submission.
+  - Teacher can view detailed test results for each student.
 
-#### US-T5.2: AI-Assisted Essay Grading
+#### US-T5.2: Suspicious Submission Flagging
+- **As a** instructor grading coding assignments
+- **I want the system to** automatically flag submissions with unusual patterns
+- **So that** I can manually investigate potential plagiarism or AI-generated code.
+- **Acceptance Criteria:**
+  - System flags submissions with high similarity to other submissions in the class.
+  - System flags submissions with code patterns that are unusually sophisticated or stylistically different from the student's prior work.
+  - Flagged submissions are presented in a dedicated review queue with a summary of the reason for the flag.
+  - The system does not assign guilt, it only flags for manual review.
+
+#### US-T5.3: AI-Assisted Essay Grading
 - **As a** instructor grading essay or open-ended submissions
 - **I want to** receive draft grades and feedback from AI
-- **So that** I focus on edge cases and nuanced evaluation instead of repeating common feedback
+- **So that** I focus on edge cases and nuanced evaluation instead of repeating common feedback.
 - **Acceptance Criteria:**
-  - AI grades based on rubric provided by teacher
-  - Provides sentence-level comments and suggestions
-  - Identifies common patterns across submissions
-  - Teacher reviews and adjusts all grades before publishing
-  - System learns from teacher corrections to improve future suggestions
+  - AI grades based on a rubric provided by the teacher.
+  - Provides sentence-level comments and suggestions aligned with the rubric.
+  - Identifies common themes or misconceptions across all submissions.
+  - Teacher reviews, edits, and approves all AI-generated feedback before publishing.
+  - System learns from teacher corrections to improve future suggestions.
 
 ---
 
