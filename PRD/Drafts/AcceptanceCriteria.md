@@ -1,6 +1,6 @@
 # Acceptance Criteria
 
-This document outlines the complete set of criteria for the CS Learning Platform. It is divided into two parts:
+This document outlines the complete set of criteria for the CourseLLM Platform. It is divided into two parts:
 
 1.  **Release Criteria & KPIs:** The high-level metrics and checklist to determine if the product is ready for its MVP release.
 2.  **Detailed Feature Criteria:** The specific, testable GIVEN/WHEN/THEN criteria for each feature.
@@ -23,8 +23,10 @@ These criteria ensure the core user value proposition is met.
 | **Teacher** | Course Management | Can successfully define and reorder `Topic`s within a `LearningTrajectory`. |
 | **Student** | Chatbot | Can hold a conversation that is verifiably grounded in the `SourceMaterial`. |
 | **Student** | Chatbot | Can receive `SocraticLearning` guidance (guiding questions) for conceptual queries. |
+| **Student** | Motivation | Can successfully ask "why" a topic is important and receive a relevant answer. |
 | **Student** | Assessment | Can successfully generate a practice quiz based on one or more `Topic`(s). |
 | **Student** | Assessment | Can submit a quiz and receive immediate, correct feedback with `Citations`. |
+| **Student** | Progress | Can successfully view their own `StudentProgress` on the `LearningTrajectory`. |
 | **Admin** | Monitoring | `Teacher`s can view `StudentProgress` dashboards. |
 
 ### 1.2. Quality & Performance KPIs
@@ -46,8 +48,8 @@ These criteria confirm that the product is operationally ready for its target us
 | **Critical Bugs** | **0** | There are zero known P0 (critical, system-crashing, data-loss) bugs. |
 | **High-Priority Bugs** | **< 5** | There are fewer than 5 known P1 (high-priority, non-blocking) bugs, and all have documented workarounds. |
 | **Adoption Testing** | **3 Courses** | At least 3 full, real-world courses from 3 different `Teacher`s have been successfully uploaded and `Indexed` in the production environment. |
-| **User Acceptance** | **Pass** | The product has been demoed to at least 5 target `Student`s and 3 target `Teacher`s (the "Adoption Testing" group), and all critical feedback has been addressed. |
-| **Documentation** | **Complete** | The `glossary.md` and `prd.md` are up-to-date and reflect the released product. |
+| **User Acceptance** | **Pass** | The product has been demoed to at least 5 target `Student`s and 3 target `Teacher`s (the "Adoption Testing" group), and **no P0/P1 (blocking) issues reported and all critical feedback addressed.** |
+| **Documentation** | **Complete** | The `Glossary.md` and `PRD.md` are up-to-date and reflect the released product. |
 
 ---
 
@@ -58,7 +60,7 @@ This section provides the specific, testable GIVEN/WHEN/THEN criteria for the fe
 ### 2.1. Epic: Course Content Chatbot (Student-Facing)
 
 #### 2.1.1. Feature: Scoped & Grounded Conversation
-* **GIVEN** a `Student` asks a question that is *within* the scope of the `Source Material`...
+* **GIVEN** a `Student` asks a question that is *within* the scope of the `SourceMaterial`...
     * **WHEN** the bot replies...
     * **THEN** the answer MUST be factually correct and derived from the `Knowledge Base`.
 * **GIVEN** a `Student` asks a question that is *outside* the scope (e.g., "What's the capital of France?")...
@@ -78,7 +80,7 @@ This section provides the specific, testable GIVEN/WHEN/THEN criteria for the fe
 * **GIVEN** the bot provides a Socratic response...
     * **WHEN** the `ChatMessage` is logged...
     * **THEN** its `is_socratic` attribute MUST be set to `true`.
-* **GIVEN** a `Student` is struggling with the Socratic dialogue...
+* **GGIVEN** a `Student` is struggling with the Socratic dialogue...
     * **WHEN** they ask...
     * **THEN** they MUST have an option to request a direct hint or the final answer.
 
@@ -86,9 +88,20 @@ This section provides the specific, testable GIVEN/WHEN/THEN criteria for the fe
 * **GIVEN** a `Student` has a `StudentProgress` status of `NOT_STARTED` for "Topic A"...
     * **WHEN** they ask about "Topic A"...
     * **THEN** the bot MUST provide a high-level, introductory explanation.
-* **GIVEN** a `Student` has a `StudentProgress` status of `MASTERED` for "Topic A"...
+* **GIVEN** a `Student` has a `StudentProgress` status of `IN_PROGRESS` for "Topic A"...
+    * **WHEN** they ask about "Topic A"...
+    * **THEN** the bot MUST provide a more detailed explanation and offer a practice question.
+* **GGIVEN** a `Student` has a `StudentProgress` status of `MASTERED` for "Topic A"...
     * **WHEN** they ask about "Topic A"...
     * **THEN** the bot MAY offer connections to more advanced topics or more complex examples.
+
+#### 2.1.4. Feature: Motivation & Purpose (PRD 4.2)
+* **GIVEN** a `Student` asks a "why" question (e.g., "Why is 'Big-O Notation' important?")...
+    * **WHEN** the bot replies...
+    * **THEN** the answer MUST be derived from the `SourceMaterial` (or a teacher-defined `Topic` description).
+* **GIVEN** a `Student` asks a "connection" question (e.g., "What does this depend on?")...
+    * **WHEN** the bot replies...
+    * **THEN** the answer MUST reference the `LearningTrajectory` (e.g., "This topic builds on 'Data Structures', which you've already mastered.").
 
 ### 2.2. Epic: Personalized Assessment (Student-Facing)
 
@@ -98,7 +111,6 @@ This section provides the specific, testable GIVEN/WHEN/THEN criteria for the fe
     * **THEN** they MUST be presented with options to filter by:
         * One or more `Topic`(s) from the `LearningTrajectory`.
         * Number of questions.
-        * Difficulty (if available).
 * **GIVEN** a `Student` generates a quiz...
     * **WHEN** the quiz is presented...
     * **THEN** all questions MUST be relevant to the selected `Topic`(s).
@@ -106,6 +118,7 @@ This section provides the specific, testable GIVEN/WHEN/THEN criteria for the fe
     * **WHEN** the results are shown...
     * **THEN** they MUST receive immediate, question-by-question feedback (correct/incorrect).
     * **AND** for incorrect answers, an explanation and `Citation` to the `SourceMaterial` MUST be provided.
+    * **AND** the `StudentProgress` status for the related `Topic`(s) MUST be updated (e.g., to 'IN_PROGRESS' or 'MASTERED' based on score).
 
 ### 2.3. Epic: Content Management (Teacher-Facing)
 
@@ -126,12 +139,16 @@ This section provides the specific, testable GIVEN/WHEN/THEN criteria for the fe
 * **GIVEN** a `Teacher`...
     * **WHEN** they are on the "Manage Course" page...
     * **THEN** they MUST have an interface to add, view, and remove whitelisted external URLs.
+* **GIVEN** a `Teacher` is on their "Manage Course" page...
+    * **WHEN** they click "Delete" on a `SourceMaterial` entry...
+    * **THEN** they MUST be asked to confirm the deletion.
+    * **AND** upon confirmation, the `SourceMaterial` MUST be removed from the `Knowledge Base` and no longer used in answers.
 
-#### 2.3.2. Feature: Content Consistency Review (PRD 3.3.4)
+#### 2.3.2. Feature: Content Consistency Review (PRD 4.3)
 * **GIVEN** a `Teacher` has successfully indexed all `SourceMaterial` for a course...
     * **WHEN** they navigate to the "Content" page...
     * **THEN** they MUST have an option to "Run Consistency Review".
-* **GIVEN** a `Teacher` has run a consistency review...
+* **GGIVEN** a `Teacher` has run a consistency review...
     * **WHEN** the review is complete...
     * **THEN** the system MUST present a report flagging potential contradictions (e.g., "Term 'X' is defined differently in *Doc A* and *Doc B*").
 
@@ -141,7 +158,7 @@ This section provides the specific, testable GIVEN/WHEN/THEN criteria for the fe
 * **GIVEN** a `Teacher`...
     * **WHEN** they manage their `Course`...
     * **THEN** they MUST have a UI to Create, Read, Update, and Delete `Topic`s for the course.
-* **GIVEN** a `Teacher` has defined `Topic`s...
+* **GGIVEN** a `Teacher` has defined `Topic`s...
     * **WHEN** they edit the `LearningTrajectory`...
     * **THEN** they MUST be able to add/remove `Topic`s and define their sequential `order`.
 
@@ -164,10 +181,28 @@ This section provides the specific, testable GIVEN/WHEN/THEN criteria for the fe
     * **WHEN** the `Teacher` reviews it...
     * **THEN** they MUST be able to edit, remove, or add questions before saving it.
 
-#### 2.4.4. Feature: Academic Integrity Monitoring (PRD 3.4.5)
+#### 2.4.4. Feature: Academic Integrity Monitoring (PRD 4.4)
 * **GIVEN** a `Teacher` is reviewing student activity...
     * **WHEN** they view an "Integrity Dashboard"...
     * **THEN** the system MUST provide high-level alerts for suspicious patterns (e.g., "Student A has a 95% copy-paste similarity from chatbot to assignment").
 * **GIVEN** a `Teacher` is reviewing `ChatSession` logs...
     * **WHEN** they view a conversation...
     * **THEN** text that is identical or highly similar to a submitted `Assessment` MUST be flagged.
+
+---
+
+## 3.0 Out of Scope for MVP
+
+The following features, while part of the long-term vision (from `DraftPRD.md`), are explicitly **OUT OF SCOPE** for the MVP release to ensure a focused and timely delivery of core value.
+
+1.  **Student Tooling & Debug Help:**
+    * **Description:** Assisting students with installing tools, debugging compilation errors, or understanding submission procedures.
+    * **Reason for Postponing:** This is a very complex, non-trivial feature that requires a different kind of `RAG` and model training. It is secondary to the primary goal of learning course *content*.
+
+2.  **Teacher-Assisted Grading:**
+    * **Description:** Tools for `Teacher`s to grade assignments.
+    * **Reason for Postponing:** The MVP focuses on *student* practice and *teacher* monitoring. Graded assignments are a separate, complex domain.
+
+3.  **Detailed `LLM-resilient` Verification:**
+    * **Description:** Verifying that a `Teacher`-created `Assessment` is "LLM-resilient".
+    * **Reason for Postponing:** While we *suggest* questions (2.4.3), actively *verifying* resilience is a complex research problem.
